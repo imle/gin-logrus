@@ -66,7 +66,7 @@ func Logger(logger logrus.FieldLogger, notLogged ...string) gin.HandlerFunc {
 			"referer":    referer,
 			"dataLength": dataLength,
 			"userAgent":  clientUserAgent,
-		})
+		}).WithContext(c.Request.Context())
 
 		if len(c.Errors) > 0 {
 			entry.Error(c.Errors.ByType(gin.ErrorTypePrivate).String())
